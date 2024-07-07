@@ -23,7 +23,7 @@ const Card = ({ meditation, setCurrent, current,isPlaying,setIsPlaying, handlePr
                 <span className='py-2 px-4 bg-white text-stone-900 rounded-full'>{meditation.category}</span>
                 <span className='py-2 px-4 bg-white text-stone-900 rounded-full'>{meditation.ageGroup}</span>
             </div>
-            <div className='flex gap-6 justify-center items-center mt-4 py-4 border-t-2 border-white'>
+            <div className='flex gap-6 justify-center items-center mt-4 py-2 border-t-2 border-white'>
                 <button className='p-2 hover:bg-stone-600 rounded-full' onClick={handlePrev}><IoPlaySkipBack /></button>
                 {meditation === current ?
                     <button className='p-2 hover:bg-stone-600 rounded-full' onClick={handlePause}><FaPause /></button> :
@@ -70,7 +70,7 @@ const Meditations = () => {
 
     return (
         <div>
-            <div className='grid border border-white rounded-lg bg-zinc-800 grid-cols-4 gap-4 p-4'>
+            <div className='grid h-[65vh] overflow-scroll border border-white rounded-lg bg-zinc-800 grid-cols-4 gap-4 p-4'>
                 {meditations?.map((meditation, idx) => (
                     <Card key={idx} meditation={meditation} handlePrev={handlePrev} handleNext={handleNext} setCurrent={setCurrent} current={current} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                 ))}

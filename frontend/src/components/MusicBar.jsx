@@ -80,7 +80,7 @@ const MusicBar = ({
   }
 
   return (
-    <div className="border border-gray-100 rounded-md my-4 text-white p-4">
+    <div className="border border-gray-100 rounded-md mt-4 text-white p-4">
       <input
         type="range"
         name="range"
