@@ -53,17 +53,17 @@ const Meditations = () => {
     console.log(current)
 
     const handleNext = () => {
-      if (meditations.length > 0 && current) {
-          const currentIndex = meditations.indexOf(current);
-          const nextIndex = (currentIndex + 1) % meditations.length;
+      if (meditations?.length > 0 && current) {
+          const currentIndex = meditations?.indexOf(current);
+          const nextIndex = (currentIndex + 1) % meditations?.length;
           setCurrent(meditations[nextIndex]);
       }
   };
 
   const handlePrev = () => {
-      if (meditations.length > 0 && current) {
-          const currentIndex = meditations.indexOf(current);
-          const prevIndex = (currentIndex - 1 + meditations.length) % meditations.length;
+      if (meditations?.length > 0 && current) {
+          const currentIndex = meditations?.indexOf(current);
+          const prevIndex = (currentIndex - 1 + meditations?.length) % meditations?.length;
           setCurrent(meditations[prevIndex]);
       }
   };
@@ -71,7 +71,7 @@ const Meditations = () => {
     return (
         <div>
             <div className='grid border border-white rounded-lg bg-zinc-800 grid-cols-4 gap-4 p-4'>
-                {meditations.map((meditation, idx) => (
+                {meditations?.map((meditation, idx) => (
                     <Card key={idx} meditation={meditation} handlePrev={handlePrev} handleNext={handleNext} setCurrent={setCurrent} current={current} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                 ))}
             </div>
