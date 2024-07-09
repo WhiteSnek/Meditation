@@ -54,8 +54,6 @@ const Register = () => {
       const user = await axios.post("/users/register", formData, {
         withCredentials: true,
       });
-      const userInfo = user.data.data.user;
-      setUser(userInfo);
       
     } catch (error) {
       const errorMessage = error.response.data.match(
