@@ -36,7 +36,6 @@ const AddDetails = ({details,setDetails}) => {
       const response = await axios.post("/meditation/add-ai", formData, {
         withCredentials: true,
       });
-      console.log(response);
       setAdded(true);
       setDetails({
         title: "",
@@ -48,7 +47,6 @@ const AddDetails = ({details,setDetails}) => {
     } catch (error) {
       console.log(error);
     }
-    console.log(details);
   };
 
   if (added)

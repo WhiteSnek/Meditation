@@ -5,7 +5,6 @@ import cors from 'cors'
 const app = express();
 
 const allowedOrigins = [process.env.CORS_ORIGIN];
-console.log(allowedOrigins)
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin) {

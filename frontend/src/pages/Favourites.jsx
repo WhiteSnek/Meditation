@@ -21,7 +21,6 @@ const Favourites = () => {
     const getFavourites = async() => {
       try {
         const response = await axios.get('/users/favourites',{withCredentials:true})
-        console.log(response)
         setFavourites(response.data.data)
       } catch (error) {
         console.log(error)
@@ -30,9 +29,9 @@ const Favourites = () => {
     getFavourites()
   },[])
   return (
-    <div className='m-4 border border-white rounded-lg bg-zinc-800 text-white'>
+    <div className='m-4 border border-white rounded-lg bg-zinc-800 text-white h-[94vh] overflow-scroll'>
       <h1 className='text-3xl font-bold text-center my-4'>Favourites</h1>
-    <div className='grid  grid-cols-4 gap-4 p-4'>
+    <div className='grid grid-cols-1 sm:grid-cols-5 gap-4 p-4 '>
       {favourites.map((favourite, idx) => (
                     <Card key={idx} favourite={favourite}  />
                 ))}

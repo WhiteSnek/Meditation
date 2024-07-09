@@ -4,6 +4,7 @@ import { IoPlaySkipBack, IoPlaySkipForwardSharp } from "react-icons/io5";
 import { IconContext } from "react-icons/lib";
 import { CiHeart } from "react-icons/ci";
 import axios from "axios";
+
 const MusicBar = ({
   current,
   isPlaying,
@@ -25,29 +26,36 @@ const MusicBar = ({
   }, []);
 
   useEffect(() => {
-    if (current && audioRef.current) {
-      const audio = audioRef.current;
-      audio.src = current.audioUrl; // Ensure audioUrl is the correct property
-      audio
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch((error) => console.error("Error playing audio:", error));
-    }
-  }, [current]);
-
-  const handlePlayPause = () => {
     const audio = audioRef.current;
-    if (audio) {
+    if (audio && current) {
+      audio.src = current.audioUrl; // Ensure audioUrl is the correct property
       if (isPlaying) {
-        audio.pause();
-      } else {
         audio
           .play()
           .then(() => setIsPlaying(true))
           .catch((error) => console.error("Error playing audio:", error));
+      } else {
+        audio.pause();
       }
-      setIsPlaying(!isPlaying);
     }
+  }, [current]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      if (isPlaying) {
+        audio
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch((error) => console.error("Error playing audio:", error));
+      } else {
+        audio.pause();
+      }
+    }
+  }, [isPlaying]);
+
+  const handlePlayPause = () => {
+    setIsPlaying(!isPlaying);
   };
 
   const handleTimeUpdate = () => {
@@ -70,14 +78,13 @@ const MusicBar = ({
   };
 
   const addToFavourites = async () => {
-    const id = current?._id
+    const id = current?._id;
     try {
-        const response = await axios.post(`/users/favourites`, {id},{withCredentials: true});
-        console.log(response)
+      const response = await axios.post(`/users/favourites`, { id }, { withCredentials: true });
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div className="border border-gray-100 rounded-md mt-4 text-white p-4">
@@ -93,10 +100,10 @@ const MusicBar = ({
       />
 
       <div className="grid grid-cols-3 items-center">
-        <span className="text-lg font-bold text-center">
+        <span className="text-sm sm:text-lg font-bold text-center">
           {current ? current.title : "Select a meditation"}
         </span>
-        <div className="flex gap-6 justify-center items-center py-4">
+        <div className="flex gap-2 sm:gap-6 justify-center items-center py-4">
           <button
             className="p-2 hover:bg-stone-600 rounded-full"
             onClick={handlePrev}
@@ -118,9 +125,15 @@ const MusicBar = ({
           </button>
         </div>
         <div className="flex justify-end">
-        <button onClick={addToFavourites} className="p-2 hover:bg-stone-700 rounded-full"><IconContext.Provider value={{  size: "27px" }}><CiHeart /></IconContext.Provider></button>
+          <button
+            onClick={addToFavourites}
+            className="p-2 hover:bg-stone-700 rounded-full"
+          >
+            <IconContext.Provider value={{ size: "27px" }}>
+              <CiHeart />
+            </IconContext.Provider>
+          </button>
         </div>
-        
       </div>
       <audio ref={audioRef} />
     </div>

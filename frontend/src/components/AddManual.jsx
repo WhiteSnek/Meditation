@@ -46,7 +46,6 @@ const AddManual = () => {
       const response = await axios.post("/meditation/add", formData, {
         withCredentials: true,
       });
-      console.log(response);
       setAdded(true);
       setDetails({
         title: "",
@@ -60,7 +59,6 @@ const AddManual = () => {
     } catch (error) {
       console.log(error);
     }
-    console.log(details);
   };
 
   if (added)

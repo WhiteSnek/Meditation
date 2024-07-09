@@ -12,7 +12,6 @@ const AddMeditation = () => {
   const logout = async () => {
     try {
       const response = await axios.post('/users/logout',{},{withCredentials:true})
-      console.log(response)
       setUser(null)
       localStorage.removeItem('user');
     } catch (error) {
@@ -21,12 +20,10 @@ const AddMeditation = () => {
   }
 
   if(!user) return (
-    <div className="p-4 flex justify-center items-center text-white col-span-3 w-full bg-zinc-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
       <h1 className="text-xl font-bold">Please login to add a meditation</h1>
-    </div>
   )
   return (
-    <div className="p-4 text-white col-span-3 w-full h-[85vh] bg-zinc-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
+    <div>
       <h1 className="text-xl font-bold border-b-2 py-4 border-white">
         Add a meditation song
       </h1>
