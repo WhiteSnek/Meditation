@@ -66,11 +66,11 @@ const Register = () => {
   };
 
   return (
-    <div className=" bg-zinc-800 text-white rounded-lg w-4/5 h-screen mx-auto my-5 shadow-lg grid grid-cols-12">
-      <div className="col-span-6">
+    <div className=" bg-zinc-800 text-white rounded-lg w-4/5 sm:h-screen mx-auto my-5 shadow-lg grid grid-cols-12">
+      <div className="hidden sm:block col-span-6">
         <img src={BGImage} alt="bg-image" className="h-full" />
       </div>
-      <div className="col-span-6 p-12 h-full flex flex-col justify-center items-center">
+      <div className="col-span-12 sm:col-span-6 p-6 sm:p-12 h-full flex flex-col justify-center items-center">
       <h3 className="text-3xl font-bold  pb-5">Sign up</h3>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <label htmlFor="fullname">Full name:</label>
